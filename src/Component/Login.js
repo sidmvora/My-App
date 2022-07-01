@@ -1,22 +1,26 @@
-import axios from 'axios';
-import React, { useContext, useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { useDispatch } from 'react-redux';
 import { useNavigate } from "react-router-dom";
-import { LoginContext } from '../App';
+import { signIn } from '../state/action-creator/authUser'
+import { useSelector } from 'react-redux/es/exports';
 
 
 const Login = () => {
     const [credentials, setCredentials] = useState({ email: "", password: "" })
-    let navigate = useNavigate();
-    const { setIsLogedIn } = useContext(LoginContext)
+    let navigate = useNavigate()
+    const dispatch = useDispatch()
+    const user = useSelector(state => state.auth)
+
+    useEffect(() => {
+        if (user) {
+            navigate('/')
+        }
+    }, [user])
+
 
     const handelSubmit = async (e) => {
         e.preventDefault();
-        axios.post(`http://localhost:5000/api/auth/login`, credentials)
-            .then(res => {
-                localStorage.setItem('authtoken', res.data.authtoken)
-                setIsLogedIn(true)
-                navigate('/');
-            })
+        dispatch(signIn(credentials))
     }
 
     const onChange = (e) => {

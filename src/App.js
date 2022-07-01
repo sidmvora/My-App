@@ -1,4 +1,4 @@
-import React, { useState, createContext } from 'react'
+import React, { useEffect, useState } from 'react'
 import './App.css';
 import Navbar from './Component/Navbar';
 import About from './About';
@@ -8,12 +8,21 @@ import List from './List';
 import Login from './Component/Login';
 import Logout from './Component/Logout';
 import PrivateRoute from './Component/PrivateRoute';
+import { useDispatch } from 'react-redux'
+import { getUser } from './state/action-creator/authUser';
+import Note from './Component/Note';
 
-
-export const LoginContext = createContext();
 const App = () => {
    const [list, setList] = useState([])
-   const [isLogedIn, setIsLogedIn] = useState(!!localStorage.getItem("authtoken"))
+   const dispatch = useDispatch()
+
+   useEffect(() => {
+      const isLogin = !!localStorage.getItem('authtoken')
+      if (isLogin) {
+         dispatch(getUser())
+      }
+   }, [])
+
 
    const addToList = (formData, id) => {
       if (id !== undefined) {
@@ -33,17 +42,16 @@ const App = () => {
    }
    return (
       <>
-         <LoginContext.Provider value={{ isLogedIn, setIsLogedIn }}>
-            <Navbar />
-            <Routes>
-               <Route exact path="/about" element={<About />} />
-               <Route exact path="/" element={<PrivateRoute><Home addToList={addToList} list={list} /></PrivateRoute>} />
-               <Route exact path="/:id" element={<PrivateRoute><Home addToList={addToList} list={list} /></PrivateRoute>} />
-               <Route exact path='/List' element={<PrivateRoute><List list={list} remove={remove} /></PrivateRoute>} />
-               <Route exact path='/login' element={<Login />} />
-               <Route exact path='/logout' element={<Logout />} />
-            </Routes>
-         </LoginContext.Provider>
+         <Navbar />
+         <Routes>
+            <Route exact path="/about" element={<About />} />
+            <Route exact path="/" element={<PrivateRoute><Home addToList={addToList} list={list} /></PrivateRoute>} />
+            <Route exact path="/:id" element={<PrivateRoute><Home addToList={addToList} list={list} /></PrivateRoute>} />
+            <Route exact path='/List' element={<PrivateRoute><List list={list} remove={remove} /></PrivateRoute>} />
+            <Route exact path='/Note' element={<PrivateRoute><Note /></PrivateRoute>} />
+            <Route exact path='/login' element={<Login />} />
+            <Route exact path='/logout' element={<Logout />} />
+         </Routes>
       </>
    )
 }

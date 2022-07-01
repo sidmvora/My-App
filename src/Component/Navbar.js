@@ -1,12 +1,11 @@
 import React from 'react'
-import { useContext } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { LoginContext } from '../App'
+import { useSelector } from 'react-redux/es/exports';
 
 
 const Navbar = () => {
-  const { isLogedIn } = useContext(LoginContext)
   let location = useLocation();
+  const user = useSelector(state => state.auth)
 
   return (
     <>
@@ -23,14 +22,18 @@ const Navbar = () => {
                   <Link className={`nav-link ${location.pathname === "/" ? "active" : ""}`} aria-current="page" to="/">Home</Link>
                 </li>
                 <li className="nav-item">
+                  <Link className={`nav-link ${location.pathname === "/Note" ? "active" : ""}`} aria-current="page" to="/Note">Inotebook</Link>
+                </li>
+                <li className="nav-item">
                   <Link className={`nav-link ${location.pathname === "/List" ? "active" : ""}`} to="/List">List</Link>
                 </li>
                 <li className="nav-item">
                   <Link className={`nav-link ${location.pathname === "/About" ? "active" : ""}`} to="/About">About</Link>
                 </li>
               </ul>
+              {!!user ? <div className='text-info'>{user.name}</div> : ''}
               <form className="d-flex" role="search">
-                {!isLogedIn ? <Link className="btn btn-primary mx-1" to="/login" role="button">Login</Link> : <Link className="btn btn-primary mx-1" to="/logout" role="button">Logout</Link>}
+                {!user ? <Link className="btn btn-primary mx-1" to="/login" role="button">Login</Link> : <Link className="btn btn-primary mx-1" to="/logout" role="button">Logout</Link>}
               </form>
             </div>
           </div>

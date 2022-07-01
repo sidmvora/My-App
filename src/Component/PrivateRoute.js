@@ -1,13 +1,12 @@
-import React, { useContext, useEffect } from 'react'
+import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
-import { LoginContext } from '../App'
+import { useSelector } from 'react-redux/es/exports';
 
 const PrivateRoute = (props) => {
-    const { isLogedIn } = useContext(LoginContext)
     let navigate = useNavigate();
-
+    const user = useSelector(state => state.auth)
     useEffect(() => {
-        if (!isLogedIn) {
+        if (!user) {
             navigate("/login");
         }
     }, [])
