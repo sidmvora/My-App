@@ -12,24 +12,19 @@ const Home = (props) => {
 
 
     const handelChange = (e) => {
-        let newFormData = { ...formData }
-        newFormData[e.target.name] = e.target.value;
-        setFormData(newFormData);
+        setFormData({ ...formData, [e.target.name]: e.target.value });
     }
     const handelOnChange = (e) => {
-        let newFormData = { ...formData }
-        newFormData[e.target.name] = e.target.checked;
-        setFormData(newFormData)
+        setFormData({ ...formData, [e.target.name]: e.target.checked });
     }
     useEffect(() => {
         if (id) {
-            const newFormData = { ...list[id] }
-            setFormData(newFormData)
+            setFormData({ ...list[id] })
         }
     }, [id, list])
     return (
         <>
-        <h1 style={{textAlign:"center"}}>My App</h1>
+            <h1 style={{ textAlign: "center" }}>My App</h1>
             <div style={{
                 textAlign: "center",
                 display: "flex",
