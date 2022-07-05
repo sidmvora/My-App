@@ -28,3 +28,13 @@ export const getUser = () => {
             })
     }
 }
+
+export const signUp = (name, email, password) => {
+    return (dispatch) => {
+        axiosInstance.post(`auth/createuser`, { name, email, password })
+            .then(res => {
+                localStorage.setItem('authtoken', res.data.authtoken)
+                dispatch(getUser())
+            })
+    }
+}

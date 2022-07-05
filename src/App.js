@@ -11,6 +11,7 @@ import PrivateRoute from './Component/PrivateRoute';
 import { useDispatch } from 'react-redux'
 import { getUser } from './state/action-creator/authUser';
 import Note from './Component/Note';
+import SignUp from './Component/SignUp';
 
 const App = () => {
    const [list, setList] = useState([])
@@ -50,6 +51,7 @@ const App = () => {
             <Route exact path='/List' element={<PrivateRoute><List list={list} remove={remove} /></PrivateRoute>} />
             <Route exact path='/Note' element={<PrivateRoute><Note /></PrivateRoute>} />
             <Route exact path='/login' element={<Login />} />
+            <Route exact path="/signup" element={<SignUp />} />
             <Route exact path='/logout' element={<Logout />} />
          </Routes>
       </>

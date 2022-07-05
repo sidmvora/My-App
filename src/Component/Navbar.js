@@ -31,10 +31,9 @@ const Navbar = () => {
                   <Link className={`nav-link ${location.pathname === "/About" ? "active" : ""}`} to="/About">About</Link>
                 </li>
               </ul>
-              {!!user ? <div className='text-info'>{user.name}</div> : ''}
-              <form className="d-flex" role="search">
-                {!user ? <Link className="btn btn-primary mx-1" to="/login" role="button">Login</Link> : <Link className="btn btn-primary mx-1" to="/logout" role="button">Logout</Link>}
-              </form>
+              {!!user ? <div className='text-info mx-3'>{user.name.toUpperCase()}</div> : ''}
+
+                {!user ? <form className="d-flex" role="search"> <Link className="btn btn-primary mx-1" to="/login" role="button">Login</Link><Link className="btn btn-primary mx-1" to="/Signup" role="button">SignUp</Link>  </form>: <Link className="btn btn-primary mx-1" to="/logout" role="button">Logout</Link>}
             </div>
           </div>
         </nav>
