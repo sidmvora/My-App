@@ -11,6 +11,9 @@ const PrivateRoute = (props) => {
         }
     }, [])
 
+    if (!user) {
+        return null
+    }
     return (
         props.children
     )
