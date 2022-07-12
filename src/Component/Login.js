@@ -23,9 +23,8 @@ const Login = () => {
         dispatch(signIn(credentials))
     }
 
-    const onChange = (e) => {
-        setCredentials({ ...credentials, [e.target.name]: e.target.value })
-    }
+    const onChange = (e) => setCredentials({ ...credentials, [e.target.name]: e.target.value })
+    
     return (
         <div className='container mt-3'>
             <h2>Login to continue to My App</h2>

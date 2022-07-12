@@ -36,7 +36,7 @@ const App = () => {
          setList(newList)
       }
    }
-   const remove = (index) => {
+   const remove = index => {
       let newList = [...list];
       newList.splice(index, 1);
       setList(newList);

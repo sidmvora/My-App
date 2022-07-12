@@ -12,7 +12,6 @@ const Note = () => {
     const ref = useRef(null)
     const refClose = useRef(null)
     const notes = useSelector(state => state.note.notes)
-    // const note={ notes: [], loading, error: null, activeNoteId: null }
     const isFetching = useSelector(state => state.note.loading.isFetching)
     const error = useSelector(state => state.note.error)
     console.log(notes)
@@ -20,7 +19,7 @@ const Note = () => {
         dispatch(getNotes())
     }, [])
 
-    const updateNote = (currentNote) => {
+    const updateNote = currentNote => {
         ref.current.click();
         setNote({ ...currentNote })
     }
@@ -29,9 +28,8 @@ const Note = () => {
         dispatch(updateNotes(note))
         refClose.current.click()
     }
-    const onChange = (e) => {
-        setNote({ ...note, [e.target.name]: e.target.value })
-    }
+    const onChange = e => setNote({ ...note, [e.target.name]: e.target.value })
+
     if (isFetching) {
         return <div>Loading</div>
     }
@@ -80,9 +78,8 @@ const Note = () => {
                 <div className='container'>
                     {notes.length === 0 && 'No notes to display'}
                 </div>
-                {notes.map((note) => {
-                    return <NoteItem key={note._id} updateNote={updateNote} note={note} />
-                })}
+                {notes.map((note) => <NoteItem key={note._id} updateNote={updateNote} note={note} />
+                )}
             </div>
         </>
     )

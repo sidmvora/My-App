@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
 
-const Input = (props) => {
+const Input = props => {
     const { name, type, value, onChange, checked, options } = props
 
     if (type === 'text') {

@@ -4,19 +4,17 @@ import Input from './Component/Input'
 import { useParams, useNavigate } from 'react-router-dom';
 
 
-const Home = (props) => {
+const Home = props => {
     const navigate = useNavigate();
     const { addToList, list } = props
     const [formData, setFormData] = useState({ firstName: '', lastName: '', describe: '', gender: '1', country: '1', isAccept: false })
     let { id } = useParams();
 
 
-    const handelChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
-    }
-    const handelOnChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.checked });
-    }
+    const handelChange = e => setFormData({ ...formData, [e.target.name]: e.target.value });
+
+    const handelOnChange = e => setFormData({ ...formData, [e.target.name]: e.target.checked });
+
     useEffect(() => {
         if (id) {
             setFormData({ ...list[id] })

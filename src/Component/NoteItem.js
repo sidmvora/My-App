@@ -6,9 +6,8 @@ const NoteItem = (props) => {
     const { note, updateNote } = props
     const dispatch = useDispatch()
 
-    const deleteNote = (id) => {
-        dispatch(deleteNotes(id))
-    }
+    const deleteNote = id => dispatch(deleteNotes(id))
+
     return (
         <div className='col-md-3'>
             <div className="card my-3" >

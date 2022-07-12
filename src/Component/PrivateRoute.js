@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux/es/exports';
 
-const PrivateRoute = (props) => {
+const PrivateRoute = props => {
     let navigate = useNavigate();
     const user = useSelector(state => state.auth)
     useEffect(() => {

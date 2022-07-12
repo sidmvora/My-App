@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { countrys, genderOptions } from '../ConstantsData/constants'
 
-const Table = (props) => {
+const Table = props => {
   const { remove, list } = props
   const navigate = useNavigate();
   return (

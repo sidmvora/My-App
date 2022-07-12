@@ -14,9 +14,8 @@ const SignUp = () => {
         dispatch(signUp(name, email, password))
         navigate("/", { replace: true });
     }
-    const onChange = (e) => {
-        setCredentials({ ...credentials, [e.target.name]: e.target.value })
-    }
+    const onChange = e => setCredentials({ ...credentials, [e.target.name]: e.target.value })
+
     return (
         <div className='container mt-3'>
             <h2>Create an account to use My App</h2>

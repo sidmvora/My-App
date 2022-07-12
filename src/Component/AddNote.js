@@ -12,9 +12,8 @@ const AddNote = () => {
         dispatch(addNote(note.title, note.description, note.tag))
     }
 
-    const onChange = (e) => {
-        setNote({ ...note, [e.target.name]: e.target.value })
-    }
+    const onChange = e => setNote({ ...note, [e.target.name]: e.target.value })
+    
     return (
         <div className='container mt-3'>
             <form>
